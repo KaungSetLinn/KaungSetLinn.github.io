@@ -1,1 +1,354 @@
-"Hello World" 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Custom styles for smooth transitions and animations */
+        .fade-in {
+            animation: fadeIn 1.0s ease-out;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        .bg-custom-dark {
+            background-color: #2d3748;
+        }
+
+        .bg-custom-light {
+            background-color: #edf2f7;
+        }
+
+        .btn-primary {
+            background-color: #4C51BF;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: #3b40a0;
+        }
+    </style>
+</head>
+<body class="bg-custom-light">
+    <!-- Eye-catching Image Section -->
+    <div class="w-full relative h-[40vh] sm:h-[60vh]">
+        <img id="portfolio-image" src="images/yozora1.jpg" alt="Eye-catching Image" class="w-full h-full object-cover 
+            sm:w-full sm:h-[60vh] xs:w-full xs:h-[50vh] transition-opacity duration-1000 opacity-100">
+        <div class="absolute top-1/2  left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-4xl font-bold sm:text-4xl xs:text-2xl">
+            Welcome to My Portfolio
+        </div>
+    </div>
+
+    <script>
+        // Array of images you want to cycle through
+        const images = [
+            "images/yozora1.jpg", 
+            "images/yozora2.jpg",
+            "images/yozora3.jpg",
+        ];
+    
+        let currentImageIndex = 0;
+    
+        // Function to change the image with fade effect
+        function changeImage() {
+            const imageElement = document.getElementById('portfolio-image');
+            
+            // Start fade-out effect
+            imageElement.classList.remove('opacity-100');
+            imageElement.classList.add('opacity-0');
+
+            // Wait for the fade-out effect to finish (1 second in this case)
+            setTimeout(() => {
+                // Change image
+                currentImageIndex = (currentImageIndex + 1) % images.length; // cycle through images
+                imageElement.src = images[currentImageIndex];
+
+                // After the image has changed, fade it in
+                imageElement.classList.remove('opacity-0');
+                imageElement.classList.add('opacity-100');
+            }, 1000); // Wait for 1 second before changing the image
+        }
+    
+        // Change image every 5 seconds (5000 milliseconds)
+        setInterval(changeImage, 3000);
+    </script>    
+
+    <header class="bg-slate-500 text-white py-6 shadow-md sticky top-0 z-10">
+        <div class="container mx-auto px-6">
+            <div class="flex justify-between items-center">
+                <h1 class="text-3xl font-extrabold tracking-wide fade-in">KAUNG SET LINN</h1>
+                <nav class="hidden md:block">
+                    <ul class="flex space-x-6 text-lg">
+                        <li><a href="#about" class="hover:text-gray-300 transition-all duration-300">About</a></li>
+                        <li><a href="#technologies" class="hover:text-gray-300 transition-all duration-300">Skills</a></li>
+                        <li><a href="#projects" class="hover:text-gray-300 transition-all duration-300">Works</a></li>
+                        <li><a href="#contact" class="hover:text-gray-300 transition-all duration-300">Contact</a></li>
+                    </ul>
+                </nav>
+                <!-- Hamburger Menu -->
+                <div class="md:hidden flex items-center">
+                    <button id="hamburger" class="text-white focus:outline-none">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="md:hidden hidden bg-slate-500 text-white mt-4">
+                <ul class="flex flex-col space-y-4 px-6 py-4">
+                    <li><a href="#about" class="hover:text-gray-300 transition-all duration-300">About</a></li>
+                    <li><a href="#technologies" class="hover:text-gray-300 transition-all duration-300">Skills</a></li>
+                    <li><a href="#projects" class="hover:text-gray-300 transition-all duration-300">Works</a></li>
+                    <li><a href="#contact" class="hover:text-gray-300 transition-all duration-300">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto">
+        <!-- About Section -->
+        <section id="about" class="mt-8 mb-8 fade-in px-6 py-8">
+            <h2 class="text-5xl font-semibold text-center text-gray-800 mb-8">About Me</h2>
+            <div class="flex flex-col sm:flex-row items-center justify-center sm:justify-between gap-8 sm:gap-16">
+                <div class="sm:w-1/3 flex justify-center sm:justify-start">
+                    <img src="images/user-icon.png" alt="Profile" class="sm:ml-[150px] w-64 h-64">
+                </div>
+                <div class="sm:w-2/3 text-center sm:text-left sm:pr-14">
+                    <p class="text-lg leading-[2.5] mb-4">
+                        はじめまして。<strong> カゥンセッリン </strong>と申します。
+                        <br> 
+                        ミャンマー出身で、現在神戸電子専門学校の情報処理学科に在籍し、ITの勉強をしています。
+                    </p>
+                    <p class="text-lg leading-[2.5] mb-4">
+                        最近、グループ制作でチームリーダーを担当し、メンバーと協力してプロジェクトを進行しました。<br>この経験を通じて、リーダーシップやチームワークの大切さを学び、スキルを向上させました。
+                    </p>
+
+                    <p class="text-lg leading-[2.5]">
+                        今後も、学んだことを活かして成長していきたいと考えています。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skill Section -->
+        <section id="technologies" class="mb-16 fade-in px-6 py-8 bg-gray-200">
+            <h2 class="text-5xl font-bold mb-6 text-center">Skills</h2>
+
+            <!-- the text is not being centered here even 'text-center' is being used -->
+            <p class="max-w-4xl mx-auto text-center text-lg leading-[3] text-gray-700 mb-8">
+                フルスタック開発の経験を積んでおり、ユーザーインターフェースからサーバーサイド、データベースまで一貫して対応可能です。
+                <br>
+                特に<strong class="text-blue-700">Javascript</strong>や<strong class="text-blue-700">React</strong>を活用したダイナミックなウェブアプリケーションの構築が得意としています。
+                <br>
+                サーバーサイドの開発においては<strong class="text-blue-700">PHP</strong>や<strong class="text-blue-700">Ruby on Rails</strong>を用いたシステム構築経験があります。
+            </p>
+            
+            
+            <div class="max-w-4xl mx-auto space-x-4 text-center">
+                <div class="text-2xl font-bold mb-8">プログラミング言語・ライブラリ・フレームワーク</div>
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 gap-4 mb-8"> <!-- Adjusted for responsiveness -->
+                    <span class="inline-flex items-center rounded-md bg-blue-50 px-3 py-3 text-xl font-medium text-blue-700 ring-1 ring-blue-700/10 ring-inset">Java</span>
+                    <span class="inline-flex items-center rounded-md bg-blue-50 px-3 py-3 text-xl font-medium text-blue-700 ring-1 ring-blue-700/10 ring-inset">C</span>
+                    <span class="inline-flex items-center rounded-md bg-blue-50 px-3 py-3 text-xl font-medium text-blue-700 ring-1 ring-blue-700/10 ring-inset">HTML</span>
+                    <span class="inline-flex items-center rounded-md bg-blue-50 px-3 py-3 text-xl font-medium text-blue-700 ring-1 ring-blue-700/10 ring-inset">CSS</span>
+                    <span class="inline-flex items-center rounded-md bg-blue-50 px-3 py-3 text-xl font-medium text-blue-700 ring-1 ring-blue-700/10 ring-inset">Bootstrap</span>
+                    <span class="inline-flex items-center rounded-md bg-blue-50 px-3 py-3 text-xl font-medium text-blue-700 ring-1 ring-blue-700/10 ring-inset">Tailwind</span>
+                    <span class="inline-flex items-center rounded-md bg-blue-50 px-3 py-3 text-xl font-medium text-blue-700 ring-1 ring-blue-700/10 ring-inset">Javascript</span>
+                    <span class="inline-flex items-center rounded-md bg-blue-50 px-3 py-3 text-xl font-medium text-blue-700 ring-1 ring-blue-700/10 ring-inset">JQuery</span>
+                    <span class="inline-flex items-center rounded-md bg-blue-50 px-3 py-3 text-xl font-medium text-blue-700 ring-1 ring-blue-700/10 ring-inset">Php</span>
+                    <span class="inline-flex items-center rounded-md bg-blue-50 px-3 py-3 text-xl font-medium text-blue-700 ring-1 ring-blue-700/10 ring-inset">React</span>
+                    <span class="inline-flex items-center rounded-md bg-blue-50 px-3 py-3 text-xl font-medium text-blue-700 ring-1 ring-blue-700/10 ring-inset">ExpressJS</span>
+                    <span class="inline-flex items-center rounded-md bg-blue-50 px-3 py-3 text-xl font-medium text-blue-700 ring-1 ring-blue-700/10 ring-inset">RubyOnRails</span>
+                </div>
+        
+                <div class="text-2xl font-bold mb-8">データベース</div>
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 gap-4 mb-8"> <!-- Adjusted for responsiveness -->
+                    <span class="inline-flex items-center rounded-md bg-blue-50 px-3 py-3 text-xl font-medium text-blue-700 ring-1 ring-blue-700/10 ring-inset">MySQL</span>
+                    <span class="inline-flex items-center rounded-md bg-blue-50 px-3 py-3 text-xl font-medium text-blue-700 ring-1 ring-blue-700/10 ring-inset">PostgreSQL</span>
+                    <span class="inline-flex items-center rounded-md bg-blue-50 px-3 py-3 text-xl font-medium text-blue-700 ring-1 ring-blue-700/10 ring-inset">SQLite</span>
+                </div>
+
+                <div class="text-2xl font-bold mb-8">開発環境とツール</div>
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 gap-4 mb-8"> <!-- Adjusted for responsiveness -->
+                    <span class="inline-flex items-center rounded-md bg-blue-50 px-3 py-3 text-xl font-medium text-blue-700 ring-1 ring-blue-700/10 ring-inset">VisualStudioCode</span>
+                    <span class="inline-flex items-center rounded-md bg-blue-50 px-3 py-3 text-xl font-medium text-blue-700 ring-1 ring-blue-700/10 ring-inset">IntelliJ IDEA</span>
+                    <span class="inline-flex items-center rounded-md bg-blue-50 px-3 py-3 text-xl font-medium text-blue-700 ring-1 ring-blue-700/10 ring-inset">Github</span>
+                </div>
+            </div>
+        </section>
+        
+
+        <!-- Projects Section -->
+        <section id="projects" class="mb-16 fade-in">
+            <h2 class="text-5xl font-bold mb-8 text-center">Works</h2>
+            <div class="max-w-lg sm:max-w-2xl md:max-w-4xl mx-auto space-x-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-12 p-4 sm:p-0 md:p-0">
+                    <div class="bg-white rounded-lg shadow-lg p-6 hover:scale-105 transition-transform duration-300 ease-in-out">
+                        <img src="images/expense-tracker.png" class="w-2/3 mx-auto mt-8 mb-8" />
+                        <h3 class="text-3xl font-semibold mb-8 text-center">家計簿マスター</h3>
+                        <p class="text-lg text-gray-600 mb-4 leading-loose">
+                            家計簿マスターは、個人や家族の支出を簡単に記録し、管理できるアプリケーションです。<br>
+                            ユーザーは、収入や支出を記録して、月々の予算を管理し、視覚的に財務状況を把握することができます。
+                        </p>                        
+                        <p class="text-gray-800 text-lg font-bold mb-6 space-x-2 space-y-2">
+                            使用技術：
+                            <span class="inline-flex items-center rounded-md bg-indigo-50 px-2 py-1 text-sm font-medium text-indigo-700 ring-1 ring-indigo-700/10 ring-inset">React</span>
+                            <span class="inline-flex items-center rounded-md bg-indigo-50 px-2 py-1 text-sm font-medium text-indigo-700 ring-1 ring-indigo-700/10 ring-inset">ExpressJS</span>
+                            <span class="inline-flex items-center rounded-md bg-indigo-50 px-2 py-1 text-sm font-medium text-indigo-700 ring-1 ring-indigo-700/10 ring-inset">JavaScript</span>
+                            <span class="inline-flex items-center rounded-md bg-indigo-50 px-2 py-1 text-sm font-medium text-indigo-700 ring-1 ring-indigo-700/10 ring-inset">HTML</span>
+                            <span class="inline-flex items-center rounded-md bg-indigo-50 px-2 py-1 text-sm font-medium text-indigo-700 ring-1 ring-indigo-700/10 ring-inset">CSS</span>
+                            <span class="inline-flex items-center rounded-md bg-indigo-50 px-2 py-1 text-sm font-medium text-indigo-700 ring-1 ring-indigo-700/10 ring-inset">Bootstrap</span>
+                            <span class="inline-flex items-center rounded-md bg-indigo-50 px-2 py-1 text-sm font-medium text-indigo-700 ring-1 ring-indigo-700/10 ring-inset">MySQL</span>
+                            <span class="inline-flex items-center rounded-md bg-indigo-50 px-2 py-1 text-sm font-medium text-indigo-700 ring-1 ring-indigo-700/10 ring-inset">Firebase</span>
+                        </p>
+
+                        <button
+                            class="text-white bg-red-600 hover:bg-red-700 w-full sm:w-auto
+                            font-bold rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 
+                            dark:hover:bg-red-700 focus:outline-none"
+                            onclick="window.open('https://www.youtube.com/watch?v=6-0sxw69TBc', '_blank')"
+                        >
+                            <i class="fa-brands fa-youtube text-xl mr-2"></i>
+                            デモ動画を見る
+                        </button>
+
+                        <button 
+                            class="text-white bg-blue-700 hover:bg-blue-800 w-full sm:w-auto 
+                            font-bold rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 
+                            dark:hover:bg-blue-700 focus:outline-none"
+                            onclick="window.open('https://github.com/KaungSetLinn/expense-tracker-app', '_blank')"
+                        >
+                            <i class="fa-brands fa-github text-xl mr-2"></i>
+                            GitHubリポジトリを見る
+                        </button>
+           
+                    </div>
+
+
+                    <div class="bg-white rounded-lg shadow-lg p-6 hover:scale-105 transition-transform duration-300 ease-in-out">
+                        <img src="images/start-screen.png" class="w-2/3 mx-auto mt-8 mb-8" />
+                        <h3 class="text-3xl font-semibold mb-8 text-center">
+                            プログラミング・プロフェッショナル（プロプロ）
+                        </h3>
+                        <p class="text-lg text-gray-600 mb-4 leading-loose">
+                            「プログラミング・プロフェッショナル（プロプロ）」は、子供たちが楽しみながらプログラミングの基礎を学べるクイズゲームです。
+                            <br> ゲーム形式でプログラミングに関する問題に挑戦し、楽しみながら論理的思考力や問題解決力を養います。
+                        </p>
+                        
+
+                        <p class="text-gray-800 text-lg font-bold mb-6 space-x-2 space-y-4">
+                            使用技術：
+                            <span class="inline-flex items-center rounded-md bg-indigo-50 px-2 py-1 text-sm font-medium text-indigo-700 ring-1 ring-indigo-700/10 ring-inset">Java</span>
+                            <span class="inline-flex items-center rounded-md bg-indigo-50 px-2 py-1 text-sm font-medium text-indigo-700 ring-1 ring-indigo-700/10 ring-inset">JavaFX</span>
+                            <span class="inline-flex items-center rounded-md bg-indigo-50 px-2 py-1 text-sm font-medium text-indigo-700 ring-1 ring-indigo-700/10 ring-inset">PostgreSQL</span>
+                        </p>
+                        
+
+                        <button
+                            class="text-white bg-red-600 hover:bg-red-700 w-full sm:w-auto
+                            font-bold rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 
+                            dark:hover:bg-red-700 focus:outline-none"
+                            onclick="window.open('https://www.youtube.com/watch?v=huNdpgl1P7o', '_blank')"
+                        >
+                            <i class="fa-brands fa-youtube text-xl mr-2"></i>
+                            デモ動画を見る
+                        </button>
+
+                        <button 
+                            class="text-white bg-blue-700 hover:bg-blue-800 w-full sm:w-auto 
+                            font-bold rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 
+                            dark:hover:bg-blue-700 focus:outline-none"
+                            onclick="window.open('https://github.com/KaungSetLinn/javafx-project', '_blank')"
+                        >
+                            <i class="fa-brands fa-github text-xl mr-2"></i>
+                            GitHubリポジトリを見る
+                        </button>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow-lg p-6 hover:scale-105 transition-transform duration-300 ease-in-out">
+                        <img src="images/propro-website-screenshot.png" class="w-2/3 mx-auto mt-8 mb-8" />
+                        <h3 class="text-3xl font-semibold mb-8 text-center">プロプロ - ウェブサイト</h3>
+                        <p class="text-lg text-gray-600 mb-4 leading-loose">
+                            このウェブサイトは、プログラミング・プロフェッショナル（プロプロ）の詳細情報を提供しています。 
+                            <br>子供たちが楽しみながらプログラミングの基本を学べるゲームの特徴や、学習をサポートするリソースを紹介しています。
+                        </p>
+                    
+                        <p class="text-gray-800 text-lg font-bold mb-6 space-x-2 space-y-4">
+                            使用技術：
+                            <span class="inline-flex items-center rounded-md bg-indigo-50 px-2 py-1 text-sm font-medium text-indigo-700 ring-1 ring-indigo-700/10 ring-inset">HTML</span>
+                            <span class="inline-flex items-center rounded-md bg-indigo-50 px-2 py-1 text-sm font-medium text-indigo-700 ring-1 ring-indigo-700/10 ring-inset">CSS</span>
+                            <span class="inline-flex items-center rounded-md bg-indigo-50 px-2 py-1 text-sm font-medium text-indigo-700 ring-1 ring-indigo-700/10 ring-inset">JavaScript</span>
+                            <span class="inline-flex items-center rounded-md bg-indigo-50 px-2 py-1 text-sm font-medium text-indigo-700 ring-1 ring-indigo-700/10 ring-inset">Tailwind</span>
+                        </p>
+                    
+                        <button 
+                            class="text-white bg-blue-700 hover:bg-blue-800 w-full sm:w-auto 
+                            font-bold rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 
+                            dark:hover:bg-blue-700 focus:outline-none"
+                            onclick="window.open('http://propro.free.nf/v1.1/', '_blank')"
+                        >
+                            <i class="fas fa-globe text-xl mr-2"></i>
+                            ホームページを見る
+                        </button>
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="mb-16 fade-in">
+            <h2 class="text-5xl font-bold mb-6 text-center">Contact</h2>
+            <div class="text-center">
+                <p class="text-lg mb-6">
+                    ご連絡は以下のメールアドレスまでお願いします。
+                </p>
+                <p class="text-lg">
+                    <a href="mailto:example@example.com" class="text-blue-500">ksl752001@gmail.com</a>
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-custom-dark text-white py-6 mt-16">
+        <div class="container mx-auto px-6 text-center">
+            <p>Copyright&copy; 2025 KaungSetLinn | All rights reserved</p>
+        </div>
+    </footer>
+
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobile-menu');
+    
+        hamburger.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+
+        // Smooth scrolling to section
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                
+                window.scrollTo({
+                    top: targetElement.offsetTop,
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
